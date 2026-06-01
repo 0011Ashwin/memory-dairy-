@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "User profile information for Ashwin and Khushi",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["partner"] }
+      },
+      "required": ["displayName", "email"]
+    },
+    "memory": {
+      "title": "Memory",
+      "description": "A shared memory containing photos, notes, or events",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "type": { "type": "string", "enum": ["photo", "note", "event", "journal"] },
+        "mediaUrl": { "type": "string" },
+        "mediaType": { "type": "string" },
+        "location": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "tags": { 
+          "type": "array", 
+          "items": { "type": "string" } 
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "date", "type", "userId"]
+    },
+    "message": {
+      "title": "Message",
+      "description": "Chat message for real-time conversation",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userPhoto": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["text", "userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Stores user profiles for identity verification"
+    },
+    "/memories/{memoryId}": {
+      "schema": "memory",
+      "description": "Main collection for all shared memories"
+    },
+    "/messages/{messageId}": {
+      "schema": "message",
+      "description": "Real-time chat messages"
+    }
+  }
+}
