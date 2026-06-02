@@ -4,3 +4,8 @@
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["AI-powered memory recaps", "Real-time shared editing", "Interactive memory timeline"]
 }
+
+{
+  "build by name": "Ashwin",
+  "build by email": "ashwinmehta1234500@gmail.com"
+}
